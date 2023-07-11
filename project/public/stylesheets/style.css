@@ -1,0 +1,178 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.top{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    background-color: black;
+}
+.top_content{
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    background-color: #e5cfcf;
+}
+.body{
+    /*background-image: url("../images/bg.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center top;*/
+    /*background-attachment: fixed;*/
+    /*background-size: 500px 500px;*/
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    height: auto;
+    margin: 20px auto;
+    /*background-color: pink;*/
+    text-align: center;
+}
+.foot{
+    position: relative;
+    z-index: 3;
+    width: 90%;
+    height: 40px;
+    margin: 0 auto;
+    /*background-color: darkgrey;*/
+}
+.foot_content{
+    width: 100%;
+    height: 40px;
+    /*background-color: forestgreen;*/
+}
+
+
+
+
+/* 导航栏 */
+.navigator{
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 8px;
+    width: 100%;
+    height: 100%;
+    /*background-color: #f6f1f1;*/
+    text-align: center;
+}
+.navigator .nav{
+    font-size: 20px;
+}
+.navigator li{
+    display: inline;  /* 一行内展示 */
+    padding-left: 30px;
+    padding-right: 30px;
+    font-weight: bold;
+    /*background-color: aqua;*/
+}
+/* 去掉下划线 */
+.navigator a:link,.navigator a:visited{
+    text-decoration: none;
+}
+.navigator a:active,.navigator a:hover{
+    text-decoration: none;
+    /*background-color: #69d927;*/
+}
+
+
+
+
+#welcome{
+    font-size: 60px;
+    padding: 50px;
+    text-align: center;
+    font-family: 华文中宋;
+
+
+}
+.subtitle{
+    font-size: 22px;
+    padding: 22px;
+}
+#copyright{
+    width: 100%;
+    height: 30px;
+    font-size: 10px;
+    padding-top: 5px;
+    text-align: center;
+    color: darkgrey;
+}
+
+
+
+/* 分项全文搜索 */
+.body_search{
+    width: 100%;
+    height: auto;
+    /*background-color: #79c448;*/
+    text-align: center;
+}
+.body_searchResult{
+    margin-top: 10px;
+    width: 100%;
+    height: auto;
+    /*background-color: aqua;*/
+}
+.kw{
+    font-size: 15px;
+    padding: 3px;
+}
+.rg, .sort{
+    font-size: 15px;
+    padding: 3px;
+}
+#keywords, #keywords1, #keywords2{
+    padding: 3px;
+}
+#condition{
+    text-align: center;
+    padding: 2px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+#range, #sort_kw, #sort_rule{
+    padding: 3px;
+    text-align: center;
+}
+
+#searchButton{
+    margin-bottom: 10px;
+    padding: 5px 10px;
+}
+
+/*分项全文搜索结果*/
+#resTable{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#resTable th, #resTable td{
+    /*height: 10px;*/
+    border: 1px solid black;
+    text-align: center;
+    font-size: 10px;
+    padding: 5px;
+}
+
+#resTable th{
+    font-size: 15px;
+    background-color: aqua;
+    color: white;
+}
+
+#resTable .ss{
+    background-color: aquamarine;
+}
+
+/* 热度图 */
+.body_heatMap{
+    width: 100%;
+    height: auto;
+    /*background-color: cyan;*/
+}
+#body_heatMapResult{
+    margin: 20px auto;
+    /*background-color: linen;*/
+}

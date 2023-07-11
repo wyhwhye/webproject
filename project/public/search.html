@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>search</title>
+</head>
+
+<body>
+	<div class="body_search">
+		<!-- 分项搜索 -->
+		<p class="subtitle">分项全文搜索</p>
+		<form id="searchForm">
+			<!-- 搜索内容 -->
+			<div class="kw">
+				关键词：
+				<input type="text" id="keywords1">
+				<select name="condition" id="condition">
+					<option>-</option>
+					<option>AND</option>
+					<option>OR</option>
+				</select>
+				<input type="text" id="keywords2">
+			</div>
+			<br/>
+			<!-- 排序 -->
+			<div class="sort">
+				按如下字段排序：<select id="sort_kw">
+								<option>publish_date</option>
+								<option>title</option>
+								<option>author</option>
+								<option>source_name</option>
+							</select>
+					<select id="sort_rule">
+						<option>降序</option>
+						<option>升序</option>
+					</select>
+			</div>
+			<br/>
+			<!-- 搜索范围-->
+			<div class="rg">
+				搜索范围：<select name="range" id="range">
+				<option>全部</option>
+				<option>title</option>
+				<option>author</option>
+				<option>content</option>
+			</select>
+			</div>
+			<br/>
+			<!-- 提交按钮 -->
+			<input type="button" value="搜索" id="searchButton">
+		</form>
+	</div>
+
+	<div class="body_searchResult">
+		<table id="resTable"></table>
+	</div>
+	<!-- 调用js代码显示内容 -->
+	<script src="javascripts/search.js"></script>
+
+</body>
+</html>

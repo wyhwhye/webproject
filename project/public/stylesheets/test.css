@@ -1,0 +1,18 @@
+
+#pageContainer {
+    height: 300px; /* 设置容器高度，控制每页显示的内容量 */
+    overflow: hidden; /* 隐藏超出容器高度的内容 */
+}
+
+.page {
+    height: 100%; /* 每页的高度占满容器 */
+    display: none; /* 隐藏所有页 */
+}
+
+#pagination {
+    margin-top: 10px;
+}
+
+button {
+    padding: 5px 10px;
+}
