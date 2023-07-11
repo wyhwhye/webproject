@@ -10,50 +10,14 @@
 
 </head>
 <body>
-<<div id="pageContainer">
-	<div class="page">Page 1 content</div>
-	<div class="page">Page 2 content</div>
-	<div class="page">Page 3 content</div>
-	<!-- 更多页面 -->
-</div>
-
-<div id="pagination">
-	<button class="prev">Previous</button>
-	<button class="next">Next</button>
-</div>
+<div id="w" style="display: none">傻逼</div>
+<button onclick="fun()">按钮</button>
 
 <script>
-    function showPage(index) {
-        for (var i = 0; i < pages.length; i++) {
-            pages[i].style.display = 'none'; // 隐藏所有页
-        }
-        pages[index].style.display = 'block'; // 显示当前页
-    }
-    var currentPage = 0; // 当前页索引
-
-    var pages = document.getElementsByClassName('page');
-    var prevButton = document.getElementsByClassName('prev')[0];
-    var nextButton = document.getElementsByClassName('next')[0];
-
-    showPage(currentPage); // 初始显示第一页
-
-    prevButton.addEventListener('click', function() {
-        if (currentPage > 0) {
-            currentPage--;
-            showPage(currentPage);
-        }
-    });
-
-    nextButton.addEventListener('click', function() {
-        if (currentPage < pages.length - 1) {
-            currentPage++;
-            showPage(currentPage);
-        }
-    });
-
-
+	function fun(){
+        document.getElementById('w').style.display="block";
+	}
 </script>
-
 </body>
 
 </html>

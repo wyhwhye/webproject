@@ -108,10 +108,11 @@
     /*background-color: #79c448;*/
     text-align: center;
 }
-.body_searchResult{
+#body_searchResult{
     margin-top: 10px;
     width: 100%;
     height: auto;
+    display: none;
     /*background-color: aqua;*/
 }
 .kw{

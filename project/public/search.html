@@ -56,11 +56,11 @@
 				<!-- 搜索范围-->
 				<div class="rg">
 					搜索范围：<select name="range" id="range">
-					<option>全部</option>
-					<option>title</option>
-					<option>author</option>
-					<option>content</option>
-				</select>
+								<option>全部</option>
+								<option>title</option>
+								<option>author</option>
+								<option>content</option>
+							</select>
 				</div>
 				<br/>
 				<!-- 提交按钮 -->
@@ -68,9 +68,24 @@
 			</form>
 		</div>
 
-		<div class="body_searchResult">
-			<table id="resTable"></table>
+		<div class="body_searchResult" id="body_searchResult">
+			<table id="resTable">
+				<thead>
+					<tr class="thead">
+<!--						<th>id</th>-->
+						<th>title</th>
+						<th>author</th>
+						<th>source_name</th>
+						<th>url</th>
+						<th>publish_date</th>
+					</tr>
+				</thead>
+				<tbody id="tbody"></tbody>
+			</table>
+			<button id="prev-btn" onclick="goToPrevPage()">上一页</button>
+			<button id="next-btn" onclick="goToNextPage()">下一页</button>
 		</div>
+
 		<!-- 调用js代码显示内容 -->
 		<script src="javascripts/search.js"></script>
 	</div>

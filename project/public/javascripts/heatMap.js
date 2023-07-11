@@ -41,9 +41,9 @@ $(document).ready(function() {
                     itemStyle: {normal: {label: {show: true}}}
                 }],
             };
-            if (option && typeof option === "object") {
-                myChart.setOption(option, true);
-            }
+
+            myChart.setOption(option, true);
+
         });
     });
 });
