@@ -15,25 +15,19 @@
 		<!--导航栏-->
 		<ul class="navigator">
 			<li class="nav">导航栏</li>
-			<li><a href="#" onclick="navi('./homepage.html')">首页</a></li>
-			<li><a href="#" onclick="navi('./search.html')">分项全文搜索</a></li>
-			<li><a href="#" onclick="navi('./heatMap.html')">时间热度图</a></li>
+			<li><a href="homePage.html">首页</a></li>
+			<li><a href="search.html">分项全文搜索</a></li>
+			<li><a href="heatMap.html">时间热度图</a></li>
 		</ul>
 	</div>
 </div>
 
-<script>
-    function navi(url){
-        $.get(url, function(data){
-            $(".body").html(data)
-        });
-        // console.log("hhhh");
-    }
-</script>
-
-
 <div class="body">
-	<p id="welcome">Welcome to <br/><br/> jio jio 妙妙屋 ！</p>
+	<p id="welcome">
+		Welcome to
+		<br/><br/>
+		jio jio 妙妙屋 ！
+	</p>
 </div>
 
 

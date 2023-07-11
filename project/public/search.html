@@ -2,60 +2,83 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>search</title>
+	<title>Search</title>
+	<link type="image/x-icon" rel="shortcut icon" href="images/shi.ico"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/style.css">
+	<script src="https://cdn.staticfile.org/jquery/3.7.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
 </head>
 
 <body>
-	<div class="body_search">
-		<!-- 分项搜索 -->
-		<p class="subtitle">分项全文搜索</p>
-		<form id="searchForm">
-			<!-- 搜索内容 -->
-			<div class="kw">
-				关键词：
-				<input type="text" id="keywords1">
-				<select name="condition" id="condition">
-					<option>-</option>
-					<option>AND</option>
-					<option>OR</option>
+	<div class="top">
+		<div class="top_content">
+			<!--导航栏-->
+			<ul class="navigator">
+				<li class="nav">导航栏</li>
+				<li><a href="homePage.html">首页</a></li>
+				<li><a href="search.html">分项全文搜索</a></li>
+				<li><a href="heatMap.html">时间热度图</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="body">
+		<div class="body_search">
+			<!-- 分项搜索 -->
+			<p class="subtitle">分项全文搜索</p>
+			<form id="searchForm">
+				<!-- 搜索内容 -->
+				<div class="kw">
+					关键词：
+					<input type="text" id="keywords1">
+					<select name="condition" id="condition">
+						<option>-</option>
+						<option>AND</option>
+						<option>OR</option>
+					</select>
+					<input type="text" id="keywords2">
+				</div>
+				<br/>
+				<!-- 排序 -->
+				<div class="sort">
+					按如下字段排序：<select id="sort_kw">
+					<option>publish_date</option>
+					<option>title</option>
+					<option>author</option>
+					<option>source_name</option>
 				</select>
-				<input type="text" id="keywords2">
-			</div>
-			<br/>
-			<!-- 排序 -->
-			<div class="sort">
-				按如下字段排序：<select id="sort_kw">
-								<option>publish_date</option>
-								<option>title</option>
-								<option>author</option>
-								<option>source_name</option>
-							</select>
 					<select id="sort_rule">
 						<option>降序</option>
 						<option>升序</option>
 					</select>
-			</div>
-			<br/>
-			<!-- 搜索范围-->
-			<div class="rg">
-				搜索范围：<select name="range" id="range">
-				<option>全部</option>
-				<option>title</option>
-				<option>author</option>
-				<option>content</option>
-			</select>
-			</div>
-			<br/>
-			<!-- 提交按钮 -->
-			<input type="button" value="搜索" id="searchButton">
-		</form>
+				</div>
+				<br/>
+				<!-- 搜索范围-->
+				<div class="rg">
+					搜索范围：<select name="range" id="range">
+					<option>全部</option>
+					<option>title</option>
+					<option>author</option>
+					<option>content</option>
+				</select>
+				</div>
+				<br/>
+				<!-- 提交按钮 -->
+				<input type="button" value="搜索" id="searchButton">
+			</form>
+		</div>
+
+		<div class="body_searchResult">
+			<table id="resTable"></table>
+		</div>
+		<!-- 调用js代码显示内容 -->
+		<script src="javascripts/search.js"></script>
 	</div>
 
-	<div class="body_searchResult">
-		<table id="resTable"></table>
+	<div class="foot">
+		<div class="foot_content">
+			<p id="copyright">Copyright © 2023 Wu Yuhan WebProgramming. All rights reserved.</p>
+		</div>
 	</div>
-	<!-- 调用js代码显示内容 -->
-	<script src="javascripts/search.js"></script>
-
 </body>
 </html>
