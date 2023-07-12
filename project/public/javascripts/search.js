@@ -17,7 +17,6 @@ function showResults() {
     var startIndex = (currentPage - 1) * resultsPerPage;
     var endIndex = startIndex + resultsPerPage;
 
-    // var id = 1;
     for (let i = startIndex; i < endIndex && i < data.length; i++) {
         var news = data[i];
         var row = document.createElement('tr');
@@ -30,33 +29,197 @@ function showResults() {
                         <td>${news.author}</td>
                         <td>${news.source_name}</td>
                         <td><a href="${news.url}" target="_blank">查看详情</a></td>
-<!--                        <td>${news.url}</td>-->
                         <td>${news.publish_date}</td>
                       `;
         resultBody.appendChild(row);
-        // id += 1;
     }
 
     prevButton.disabled = currentPage === 1;
     nextButton.disabled = currentPage === totalPages;
 
-    // 添加分页索引按钮
-    for (let i = 1; i <= totalPages; i++) {
-        var li = document.createElement('li');
-        var a = document.createElement('a');
-        a.innerText = i;
-        a.id = i;
-        a.onclick = function() {
-            currentPage = i;
-            showResults();
-        };
 
-        if (currentPage === i) {
-            a.style.color = "black"; // 设置当前页按钮的颜色
-            a.classList.add('show-after');
+    /* 添加分页索引按钮 */
+    if (totalPages <= 7){
+        for (let i = 1; i <= totalPages; i++) {
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.innerText = i;
+            a.id = i;
+            a.onclick = function() {
+                currentPage = i;
+                showResults();
+            };
+            if (currentPage === i) {
+                a.style.color = "black"; // 设置当前页按钮的颜色
+                a.classList.add('show-after');
+            }
+            li.appendChild(a);
+            paginationContainer.appendChild(li);
         }
-        li.appendChild(a);
-        paginationContainer.appendChild(li);
+    } else if (totalPages > 7){
+        console.log(currentPage);
+        switch (currentPage){
+            case 1:  // < 1 2 3 4 5 ... c >
+            case 2:  // < 1 2 3 4 5 ... c >
+            case 3:  // < 1 2 3 4 5 ... c >
+            case 4:  // < 1 2 3 4 5 ... c >
+                for (let i = 1; i <= 5; i++) {
+                    var li = document.createElement('li');
+                    var a = document.createElement('a');
+                    a.innerText = i;
+                    a.id = i;
+                    a.onclick = function() {
+                        currentPage = i;
+                        showResults();
+                    };
+                    if (currentPage === i) {
+                        a.style.color = "black"; // 设置当前页按钮的颜色
+                        a.classList.add('show-after');
+                    }
+                    li.appendChild(a);
+                    paginationContainer.appendChild(li);
+                }
+
+                // ...
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.innerText = '...';
+                a.id = '...';
+                a.onclick = function() {
+                    currentPage = Math.ceil((5+totalPages)/2);
+                    showResults();
+                };
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+
+                // 末页
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.innerText = totalPages;
+                a.id = totalPages;
+                a.onclick = function() {
+                    currentPage = totalPages;
+                    showResults();
+                };
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+                break;
+
+            case totalPages-3:  // < 1 ... c-4 c-3 c-1 c-1 c >
+            case totalPages-2:  // < 1 ... c-4 c-3 c-1 c-1 c >
+            case totalPages-1:  // < 1 ... c-4 c-3 c-1 c-1 c >
+            case totalPages:    // < 1 ... c-4 c-3 c-1 c-1 c >
+
+                // 首页
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.innerText = 1;
+                a.id = 1;
+                a.onclick = function() {
+                    currentPage = 1;
+                    showResults();
+                };
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+
+                // ...
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.innerText = '...';
+                a.id = '...';
+                a.onclick = function() {
+                    currentPage = Math.ceil((1 + totalPages-4)/2);
+                    showResults();
+                };
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+
+                for (let i = totalPages-4; i <= totalPages; i++) {
+                    var li = document.createElement('li');
+                    var a = document.createElement('a');
+                    a.innerText = i;
+                    a.id = i;
+                    a.onclick = function() {
+                        currentPage = i;
+                        showResults();
+                    };
+                    if (currentPage === i) {
+                        a.style.color = "black"; // 设置当前页按钮的颜色
+                        a.classList.add('show-after');
+                    }
+                    li.appendChild(a);
+                    paginationContainer.appendChild(li);
+                }
+                break;
+
+            default:  // < 1 ... x-1 x x+1 ... c >
+                console.log("进default");
+                // 首页
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.innerText = 1;
+                a.id = 1;
+                a.onclick = function() {
+                    currentPage = 1;
+                    showResults();
+                };
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+
+                // ...
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.innerText = '...';
+                a.id = '...';
+                a.onclick = function() {
+                    currentPage = Math.ceil((1 + currentPage-1)/2);
+                    showResults();
+                };
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+
+                for (let i = currentPage-1; i <= currentPage+1; i++) {
+                    var li = document.createElement('li');
+                    var a = document.createElement('a');
+                    a.innerText = i;
+                    a.id = i;
+                    a.onclick = function() {
+                        currentPage = i;
+                        showResults();
+                    };
+                    if (currentPage === i) {
+                        a.style.color = "black"; // 设置当前页按钮的颜色
+                        a.classList.add('show-after');
+                    }
+                    li.appendChild(a);
+                    paginationContainer.appendChild(li);
+                }
+
+                // ...
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.innerText = '...';
+                a.id = '...';
+                a.onclick = function() {
+                    currentPage = Math.ceil((currentPage+1 + totalPages)/2);
+                    showResults();
+                };
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+
+                // 末页
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.innerText = totalPages;
+                a.id = totalPages;
+                a.onclick = function() {
+                    currentPage = totalPages;
+                    showResults();
+                };
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+
+        }
     }
 }
 
@@ -78,6 +241,7 @@ function goToNextPage() {
 
 $(document).ready(function() {
     $("input:button").click(function() {
+        currentPage = 1;
         $.get('/search?keywords1=' + $("#keywords1").val()+
             '&condition=' + $("#condition").val() +
             '&keywords2=' + $("#keywords2").val() +
@@ -87,7 +251,7 @@ $(document).ready(function() {
             // 未找到
             if (result.length === 0) {
                 alert("未找到！");
-                $("#resTable").empty();
+                // $("#resTable").empty();
                 return;
             }
             console.log(result);

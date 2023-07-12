@@ -10,7 +10,7 @@
     background-color: black;
 }
 .top_content{
-    width: 90%;
+    width: 80%;
     height: 50px;
     margin: 0 auto;
     background-color: #e5cfcf;
@@ -23,7 +23,7 @@
     /*background-size: 500px 500px;*/
     position: relative;
     z-index: 2;
-    width: 90%;
+    width: 80%;
     height: auto;
     margin: 20px auto;
     /*background-color: pink;*/
@@ -32,7 +32,7 @@
 .foot{
     position: relative;
     z-index: 3;
-    width: 90%;
+    width: 80%;
     height: 40px;
     margin: 0 auto;
     /*background-color: darkgrey;*/
