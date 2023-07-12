@@ -13,6 +13,7 @@
 	<canvas id="starsCanvas"></canvas>
 	<!-- 背景内容 -->
 	<script src="javascripts/bg.js"></script>
+
 	<div class="top">
 		<nav class="top_content">
 			<!--导航栏-->
@@ -41,9 +42,9 @@
 					</select>
 					<input type="text" id="keywords2">
 				</div>
-				<br/>
+
 				<!-- 排序 -->
-				<div class="sort">
+				<div class="sort" id="sort">
 					按如下字段排序：
 					<select id="sort_kw">
 						<option>publish_date</option>
@@ -56,9 +57,9 @@
 						<option>升序</option>
 					</select>
 				</div>
-				<br/>
+
 				<!-- 搜索范围-->
-				<div class="rg">
+				<div class="rg" id="rg">
 					搜索范围：<select name="range" id="range">
 								<option>全部</option>
 								<option>title</option>
@@ -66,7 +67,6 @@
 								<option>content</option>
 							</select>
 				</div>
-				<br/>
 				<!-- 提交按钮 -->
 				<input type="button" value="搜索" id="searchButton">
 			</form>
@@ -97,7 +97,6 @@
 				</nav>
 			</div>
 		</div>
-
 
 		<!-- 调用js代码显示内容 -->
 		<script src="javascripts/search.js"></script>

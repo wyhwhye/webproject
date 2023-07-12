@@ -12,6 +12,8 @@ function showResults() {
 
     resultBody.innerHTML = '';
     resultContainer.style.display = "block";
+    document.getElementById('sort').style.marginLeft = '280px';
+    document.getElementById('rg').style.marginLeft = '280px';
     paginationContainer.innerHTML = ''; // 清空分页索引容器
 
     var startIndex = (currentPage - 1) * resultsPerPage;

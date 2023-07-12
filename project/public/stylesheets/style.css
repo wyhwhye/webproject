@@ -37,8 +37,9 @@
     height: auto;
     margin: 30px auto;
     background-color: #fff6f6;
+    opacity: 0.95;
     /*background-color: #e5cfcf;*/
-    text-align: center;
+    /*text-align: center;*/
     border-radius: 4px;
 }
 .foot{
@@ -98,6 +99,7 @@
     font-family: 华文中宋;
 }
 .subtitle{
+    text-align: center;
     font-size: 22px;
     padding: 22px;
 }
@@ -122,7 +124,7 @@
 }
 .body_searchResult{
     width: 100%;
-    /*text-align: center;*/
+    text-align: center;
 }
 #body_searchResult{
     margin: 0 auto;
@@ -131,17 +133,30 @@
     display: none;
     /*background-color: aqua;*/
 }
-#searchButton{
-    margin-bottom: 10px;
-    padding: 5px 10px;
-}
+
 .kw{
+    width: 100%;
     font-size: 15px;
     padding: 3px;
+    margin-bottom: 20px;
+    text-align: center;
 }
-.rg, .sort{
+.sort{
+    width: 100%;
     font-size: 15px;
     padding: 3px;
+    /*vertical-align:top;*/
+    margin-left: 285px;
+    margin-bottom: 20px;
+    /*text-align: center;*/
+}
+.rg{
+    font-size: 15px;
+    padding: 3px;
+    float: left;
+    margin-left: 285px;
+    margin-right: 220px;
+    margin-bottom: 20px;
 }
 #keywords, #keywords1, #keywords2{
     padding: 3px;
@@ -156,7 +171,15 @@
     padding: 3px;
     text-align: center;
 }
-
+#searchButton{
+    /*margin-bottom: 10px;*/
+    padding: 5px 10px;
+    float: left;
+}
+#searchButton2{
+    /*margin-bottom: 10px;*/
+    padding: 5px 10px;
+}
 
 
 /*分项全文搜索结果*/
@@ -230,6 +253,7 @@
 .body_heatMap{
     width: 100%;
     height: auto;
+    text-align: center;
     /*background-color: cyan;*/
 }
 #body_heatMapResult{
