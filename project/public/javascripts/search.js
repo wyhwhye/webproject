@@ -3,10 +3,10 @@ var resultsPerPage = 10;
 var data = [];
 
 function showResults() {
-    var resultContainer = $('#body_searchResult');
-    var resultBody = $('#tbody');
-    var prevButton = $('#prev-btn');
-    var nextButton = $('#next-btn');
+    var resultContainer = document.getElementById('body_searchResult');
+    var resultBody = document.getElementById('tbody');
+    var prevButton = document.getElementById('prev-btn');
+    var nextButton = document.getElementById('next-btn');
     var totalPages = Math.ceil(data.length / resultsPerPage);
 
     resultBody.innerHTML = '';
@@ -74,32 +74,6 @@ $(document).ready(function() {
             data = result;
             showResults();
         });
-
-            // $("#resTable").empty();
-            // $("#resTable").append(
-            //     '<tr class="body_searchResult">' +
-            //     '<th>id</th>' +
-            //     '<th>title</th>' +
-            //     '<th>author</th>' +
-            //     '<th>source_name</th>' +
-            //     '<th>url</th>' +
-            //     '<th>publish_date</th>' +
-            //     '</tr>');
-            // // 使表格间隔行有颜色
-            // var flag = 1;
-            // for (let list of data) {
-            //     if (flag%2 === 0){
-            //         var table = '<tr class="ss"><td>' + flag + '</td>';
-            //         flag += 1;
-            //     } else {
-            //         var table = '<tr><td>' + flag + '</td>';
-            //         flag += 1;
-            //     }
-            //     Object.values(list).forEach(element => {
-            //         table += ('<td>' + element + '</td>');
-            //     });
-            //     $("#resTable").append(table + '</tr>');
-            // }
     });
 });
 
