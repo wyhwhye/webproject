@@ -10,6 +10,9 @@
 </head>
 
 <body>
+	<canvas id="starsCanvas"></canvas>
+	<!-- 背景内容 -->
+	<script src="javascripts/bg.js"></script>
 	<div class="top">
 		<nav class="top_content">
 			<!--导航栏-->
@@ -41,12 +44,13 @@
 				<br/>
 				<!-- 排序 -->
 				<div class="sort">
-					按如下字段排序：<select id="sort_kw">
-					<option>publish_date</option>
-					<option>title</option>
-					<option>author</option>
-					<option>source_name</option>
-				</select>
+					按如下字段排序：
+					<select id="sort_kw">
+						<option>publish_date</option>
+						<option>title</option>
+						<option>author</option>
+						<option>source_name</option>
+					</select>
 					<select id="sort_rule">
 						<option>降序</option>
 						<option>升序</option>
@@ -68,9 +72,10 @@
 			</form>
 		</div>
 
-		<div class="body_searchResult" id="body_searchResult">
-			<table id="resTable">
-				<thead>
+		<div class="body_searchResult">
+			<div id="body_searchResult">
+				<table id="resTable">
+					<thead>
 					<tr class="thead">
 						<th>id</th>
 						<th>title</th>
@@ -79,21 +84,20 @@
 						<th>url</th>
 						<th>publish_date</th>
 					</tr>
-				</thead>
-				<tbody id="tbody"></tbody>
-			</table>
-
-			<nav class="pagebtn" id="pagebtn">
-				<ul>
-					<li><a id="prev-btn" onclick="goToPrevPage()"> < </a></li>
-					<span id="pagination"></span>
-					<li><a id="next-btn" onclick="goToNextPage()"> > </a></li>
-				</ul>
-			</nav>
-
-<!--			<button class="pagebtn" id="prev-btn" onclick="goToPrevPage()">上一页</button>-->
-<!--			<button class="pagebtn" id="next-btn" onclick="goToNextPage()">下一页</button>-->
+					</thead>
+					<tbody id="tbody"></tbody>
+				</table>
+				<!--  分页 -->
+				<nav class="pagebtn" id="pagebtn">
+					<ul>
+						<li><a id="prev-btn" onclick="goToPrevPage()"> < </a></li>
+						<span id="pagination"></span>
+						<li><a id="next-btn" onclick="goToNextPage()"> > </a></li>
+					</ul>
+				</nav>
+			</div>
 		</div>
+
 
 		<!-- 调用js代码显示内容 -->
 		<script src="javascripts/search.js"></script>

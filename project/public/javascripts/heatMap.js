@@ -2,6 +2,10 @@
 $(document).ready(function() {
     $("input:button").click(function() {
         var h_kw = $("#keywords").val();
+        if (h_kw === ''){
+            alert("请输入关键词！");
+            return;
+        }
         var div = document.getElementById("body_heatMapResult");
         $.get('/heatMap?keywords=' + h_kw, function(data) {
             // 未找到

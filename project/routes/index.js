@@ -107,7 +107,7 @@ router.get('/search', function(req, res) {
         }
 
     }
-    console.log(fetchSql);
+    // console.log(fetchSql);
     mysql.query(fetchSql, function(err, result, fields) {
         if (err) {
             console.log(err);
@@ -132,7 +132,7 @@ router.get('/heatMap', function(req, res) {
         WHERE content LIKE '%${kw}%' 
         ORDER BY publish_date
     `;
-    console.log(fetchSql);
+    // console.log(fetchSql);
     mysql.query_noparam(fetchSql, function (err, result, fields) {
         if (err) {
             console.log(err);

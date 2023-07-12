@@ -2,32 +2,44 @@
     margin: 0;
     padding: 0;
 }
+/*body{*/
+/*    background-image: url("../images/bg.png");*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: cover;*/
+/*    !*background-position: center top;*!*/
+/*    !*background-attachment: fixed;*!*/
+/*}*/
+#starsCanvas{
+    position:fixed;  //设置定位
+    top:0;
+    left:0;
+    z-index:-1;  //使画布基于最低层
+    background:#0e1729;  //画布背景色
+}
 .top{
     position: relative;
     z-index: 1;
     width: 100%;
     height: 50px;
-    background-color: black;
+    /*background-color: black;*/
 }
 .top_content{
-    width: 80%;
+    width: 100%;
     height: 50px;
     margin: 0 auto;
     background-color: #e5cfcf;
 }
 .body{
-    /*background-image: url("../images/bg.png");*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center top;*/
-    /*background-attachment: fixed;*/
-    /*background-size: 500px 500px;*/
     position: relative;
     z-index: 2;
     width: 80%;
+    min-height: 520px;
     height: auto;
-    margin: 20px auto;
-    /*background-color: pink;*/
+    margin: 30px auto;
+    background-color: #fff6f6;
+    /*background-color: #e5cfcf;*/
     text-align: center;
+    border-radius: 4px;
 }
 .foot{
     position: relative;
@@ -80,11 +92,10 @@
 
 #welcome{
     font-size: 60px;
-    padding: 50px;
+    padding: 80px;
     text-align: center;
+    /*margin-top: 50px;*/
     font-family: 华文中宋;
-
-
 }
 .subtitle{
     font-size: 22px;
@@ -105,15 +116,24 @@
 .body_search{
     width: 100%;
     height: auto;
+    margin-bottom: 20px;
     /*background-color: #79c448;*/
-    text-align: center;
+    /*text-align: center;*/
+}
+.body_searchResult{
+    width: 100%;
+    /*text-align: center;*/
 }
 #body_searchResult{
-    margin-top: 10px;
-    width: 100%;
+    margin: 0 auto;
+    width: 95%;
     height: auto;
     display: none;
     /*background-color: aqua;*/
+}
+#searchButton{
+    margin-bottom: 10px;
+    padding: 5px 10px;
 }
 .kw{
     font-size: 15px;
@@ -137,10 +157,7 @@
     text-align: center;
 }
 
-#searchButton{
-    margin-bottom: 10px;
-    padding: 5px 10px;
-}
+
 
 /*分项全文搜索结果*/
 #resTable{
@@ -216,6 +233,8 @@
     /*background-color: cyan;*/
 }
 #body_heatMapResult{
+    /*width: 600px;*/
+    /*height: 400px;*/
     margin: 20px auto;
     /*background-color: linen;*/
 }
