@@ -82,8 +82,15 @@
 				</thead>
 				<tbody id="tbody"></tbody>
 			</table>
-			<button class="pagebtn" id="prev-btn" onclick="goToPrevPage()">上一页</button>
-			<button class="pagebtn" id="next-btn" onclick="goToNextPage()">下一页</button>
+			<nav class="pagebtn">
+				<ul>
+					<li><a id="prev-btn" onclick="goToPrevPage()"> < </a></li>
+					<li><a id="next-btn" onclick="goToNextPage()"> > </a></li>
+				</ul>
+			</nav>
+
+<!--			<button class="pagebtn" id="prev-btn" onclick="goToPrevPage()">上一页</button>-->
+<!--			<button class="pagebtn" id="next-btn" onclick="goToNextPage()">下一页</button>-->
 		</div>
 
 		<!-- 调用js代码显示内容 -->
