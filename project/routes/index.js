@@ -10,11 +10,12 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/search', function(req, res) {
-    kw1 = req.query.keywords1;
-    cd = req.query.condition;
-    kw2 = req.query.keywords2;
-    range = req.query.range;
-    sortkw = req.query.sortkw;
+    var kw1 = req.query.keywords1;
+    var cd = req.query.condition;
+    var kw2 = req.query.keywords2;
+    var range = req.query.range;
+    var sortkw = req.query.sortkw;
+    var sortrule;
     if (req.query.sortrule==="升序"){
         sortrule= 'ASC';
     } else {
@@ -25,33 +26,83 @@ router.get('/search', function(req, res) {
     if (range === "全部"){
         switch (cd){
             case "-":
-                var fetchSql = "select title,author,source_name,url,publish_date from fetches where title like '%"+ kw1 +"%'" +
-                    " or content like '%"+ kw1 +"%'" + " or author like '%"+ kw1 +"%'" + ' order by '+sortkw+' '+sortrule;
+                // var fetchSql = "select title,author,source_name,url,publish_date from fetches where title like '%"+ kw1 +"%'" +
+                //     " or content like '%"+ kw1 +"%'" + " or author like '%"+ kw1 +"%'" + ' order by '+sortkw+' '+sortrule;
+                var fetchSql = `
+                    SELECT title, author, source_name, url, publish_date 
+                    FROM fetches 
+                    WHERE title LIKE '%${kw1}%'
+                    OR content LIKE '%${kw1}%'   
+                    OR author LIKE '%${kw1}%'
+                    ORDER BY ${sortkw} ${sortrule}
+                `;
                 break;
             case "AND":
-                var fetchSql = "select title,author,source_name,url,publish_date from fetches where (title like '%"+ kw1 +"%'" +
-                    " or content like '%"+ kw1 +"%'" + " or author like '%"+ kw1 +"%')" + " and " +
-                    "(title like '%"+ kw2 +"%'" + " or content like '%"+ kw2 +"%'" + " or author like '%"+ kw2 +"%')"  + ' order by '+sortkw+' '+sortrule;
+                // var fetchSql = "select title,author,source_name,url,publish_date from fetches where (title like '%"+ kw1 +"%'" +
+                //     " or content like '%"+ kw1 +"%'" + " or author like '%"+ kw1 +"%')" + " and " +
+                //     "(title like '%"+ kw2 +"%'" + " or content like '%"+ kw2 +"%'" + " or author like '%"+ kw2 +"%')"  + ' order by '+sortkw+' '+sortrule;
+                var fetchSql = `
+                    SELECT title, author, source_name, url, publish_date 
+                    FROM fetches 
+                    WHERE (title LIKE '%${kw1}%'
+                    OR content LIKE '%${kw1}%'   
+                    OR author LIKE '%${kw1}%')
+                    AND (title LIKE '%${kw2}%'
+                    OR content LIKE '%${kw2}%'   
+                    OR author LIKE '%${kw2}%')
+                    ORDER BY ${sortkw} ${sortrule}
+                `;
                 break;
             case "OR":
-                var fetchSql = "select title,author,source_name,url,publish_date from fetches where title like '%"+ kw1 +"%'" +
-                    " or title like '%"+ kw2 +"%'" + " or content like '%"+ kw1 +"%'" + " or content like '%"+ kw2 +"%'" +
-                    " or author like '%"+ kw1 +"%'" + " or author like '%"+ kw2 +"%'"  + ' order by '+sortkw+' '+sortrule;
+                // var fetchSql = "select title,author,source_name,url,publish_date from fetches where title like '%"+ kw1 +"%'" +
+                //     " or title like '%"+ kw2 +"%'" + " or content like '%"+ kw1 +"%'" + " or content like '%"+ kw2 +"%'" +
+                //     " or author like '%"+ kw1 +"%'" + " or author like '%"+ kw2 +"%'"  + ' order by '+sortkw+' '+sortrule;
+                var fetchSql = `
+                    SELECT title, author, source_name, url, publish_date 
+                    FROM fetches 
+                    WHERE title LIKE '%${kw1}%'
+                    OR content LIKE '%${kw1}%'   
+                    OR author LIKE '%${kw1}%'
+                    OR title LIKE '%${kw2}%'
+                    OR content LIKE '%${kw2}%'   
+                    OR author LIKE '%${kw2}%'
+                    ORDER BY ${sortkw} ${sortrule}
+                `;
                 break;
         }
 
     } else {
         switch (cd){
             case "-":
-                var fetchSql = "select title,author,source_name,url,publish_date from fetches where "+ range +" like '%"+ kw1 +"%'" + ' order by '+sortkw+' '+sortrule;
+                // var fetchSql = "select title,author,source_name,url,publish_date from fetches where "+ range +" like '%"+ kw1 +"%'" + ' order by '+sortkw+' '+sortrule;
+                var fetchSql = `
+                    SELECT title, author, source_name, url, publish_date 
+                    FROM fetches 
+                    WHERE ${range} LIKE '%${kw1}%'
+                    ORDER BY ${sortkw} ${sortrule}
+                `;
                 break;
             case "AND":
-                var fetchSql = "select title,author,source_name,url,publish_date from fetches where "+
-                    range +" like '%"+ kw1 +"%'" + " and " + range +" like '%"+ kw2 +"%'" + ' order by '+sortkw+' '+sortrule;
+                // var fetchSql = "select title,author,source_name,url,publish_date from fetches where "+
+                //     range +" like '%"+ kw1 +"%'" + " and " + range +" like '%"+ kw2 +"%'" + ' order by '+sortkw+' '+sortrule;
+                var fetchSql = `
+                    SELECT title, author, source_name, url, publish_date 
+                    FROM fetches 
+                    WHERE ${range} LIKE '%${kw1}%'
+                    AND ${range} LIKE '%${kw2}%'
+                    ORDER BY ${sortkw} ${sortrule}
+                `;
                 break;
             case "OR":
-                var fetchSql = "select title,source_name,url,publish_date from fetches where "+
-                    range +" like '%"+ kw1 +"%'" + " or " + range +" like '%"+ kw2 +"%'" + ' order by '+sortkw+' '+sortrule;
+                // var fetchSql = "select title,source_name,url,publish_date from fetches where "+
+                //     range +" like '%"+ kw1 +"%'" + " or " + range +" like '%"+ kw2 +"%'" + ' order by '+sortkw+' '+sortrule;
+                var fetchSql = `
+                    SELECT title, author, source_name, url, publish_date 
+                    FROM fetches 
+                    WHERE ${range} LIKE '%${kw1}%'
+                    OR ${range} LIKE '%${kw2}%'
+                    ORDER BY ${sortkw} ${sortrule}
+                `;
                 break;
         }
 
@@ -74,8 +125,13 @@ router.get('/search', function(req, res) {
 
 
 router.get('/heatMap', function(req, res) {
-    kw = req.query.keywords;
-    var fetchSql = "select title,publish_date from fetches where content like'%" + kw + "%' order by publish_date";
+    var kw = req.query.keywords;
+    var fetchSql =`
+        SELECT title, publish_date 
+        FROM fetches 
+        WHERE content LIKE '%${kw}%' 
+        ORDER BY publish_date
+    `;
     console.log(fetchSql);
     mysql.query_noparam(fetchSql, function (err, result, fields) {
         if (err) {

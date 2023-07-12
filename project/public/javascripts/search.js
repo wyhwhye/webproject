@@ -11,24 +11,29 @@ function showResults() {
 
     resultBody.innerHTML = '';
 
-
     resultContainer.style.display = "block";
 
     var startIndex = (currentPage - 1) * resultsPerPage;
     var endIndex = startIndex + resultsPerPage;
 
+    var id = 1;
     for (let i = startIndex; i < endIndex && i < data.length; i++) {
         var news = data[i];
         var row = document.createElement('tr');
+        if (id%2 === 0){
+            row.className = 'ss';
+        }
         row.innerHTML = `
+                        <td>${id}</td>
                         <td>${news.title}</td>
                         <td>${news.author}</td>
                         <td>${news.source_name}</td>
-<!--                        <td><a href="${news.url}" target="_blank">查看详情</a></td>-->
-                        <td>${news.url}</td>
+                        <td><a href="${news.url}" target="_blank">查看详情</a></td>
+<!--                        <td>${news.url}</td>-->
                         <td>${news.publish_date}</td>
                       `;
         resultBody.appendChild(row);
+        id += 1;
     }
 
     prevButton.disabled = currentPage === 1;
