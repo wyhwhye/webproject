@@ -53,13 +53,7 @@ function showResults() {
 
         if (currentPage === i) {
             a.style.color = "black"; // 设置当前页按钮的颜色
-            // a.style::after(function (){
-            //     content: "";
-            //     display: 'block';
-            //     background: 'linear-gradient(to right, #188eee, #999)';
-            //     width: '100%';
-            //     height: '2px';
-            // })
+            a.classList.add('show-after');
         }
         li.appendChild(a);
         paginationContainer.appendChild(li);

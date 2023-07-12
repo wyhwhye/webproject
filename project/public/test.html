@@ -5,36 +5,31 @@
 	<title>ECharts</title>
 <!--	<script src="https://cdn.staticfile.org/jquery/3.7.0/jquery.min.js"></script>-->
 <!--	<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>-->
-	<link rel="stylesheet" type="text/css" href="stylesheets/test.css">
-<style>
-	#aa:after{
-		content: "";
-		display: block;
-		width: 100%;
-		height: 2px;
-	}
-</style>
+<!--	<link rel="stylesheet" type="text/css" href="stylesheets/test.css">-->
 
-</head>
-<body>
-<div id="aa">鼠标</div>
-<button onclick="fun()">按钮</button>
+		<style>
+            #aa::after {
+                content: "";
+                display: none;
+                background: linear-gradient(to right, #188eee, #188eee);
+                width: 100%;
+                height: 2px;
+            }
 
-<script>
+            .show-after::after {
+                display: block;
+            }
+		</style>
+	</head>
+	<body>
+	<div id="aa">鼠标</div>
+	<button onclick="showAfter()">按钮</button>
 
-    function fun(){
-        var a = document.getElementById('aa');
-        a.style.color='blue';
-        // a.style::after()={
-        //     content: "",
-        //     display: 'block',
-        //     background: 'linear-gradient(to right, #188eee, #999)',
-        //     width: '100%',
-        //     height: '2px',
-		// }
-	}
-
-</script>
-</body>
-
-</html>
+	<script>
+        function showAfter() {
+            var aaElement = document.getElementById('aa');
+            aaElement.classList.add('show-after');
+        }
+	</script>
+	</body>
+	</html>
