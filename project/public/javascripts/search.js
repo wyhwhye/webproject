@@ -1,16 +1,15 @@
 var currentPage = 1;
-const resultsPerPage = 10;
+var resultsPerPage = 10;
 var data = [];
 
 function showResults() {
-    var resultContainer = document.getElementById('body_searchResult');
-    var resultBody = document.getElementById('tbody');
-    var prevButton = document.getElementById('prev-btn');
-    var nextButton = document.getElementById('next-btn');
+    var resultContainer = $('#body_searchResult');
+    var resultBody = $('#tbody');
+    var prevButton = $('#prev-btn');
+    var nextButton = $('#next-btn');
     var totalPages = Math.ceil(data.length / resultsPerPage);
 
     resultBody.innerHTML = '';
-
     resultContainer.style.display = "block";
 
     var startIndex = (currentPage - 1) * resultsPerPage;
@@ -49,7 +48,7 @@ function goToPrevPage() {
 }
 
 function goToNextPage() {
-    const totalPages = Math.ceil(data.length / resultsPerPage);
+    var totalPages = Math.ceil(data.length / resultsPerPage);
     if (currentPage < totalPages) {
         currentPage++;
         showResults();
@@ -59,9 +58,12 @@ function goToNextPage() {
 
 $(document).ready(function() {
     $("input:button").click(function() {
-        $.get('/search?keywords1=' + $("#keywords1").val()+ '&condition=' + $("#condition").val() +
-            '&keywords2=' + $("#keywords2").val() + '&sortkw=' + $("#sort_kw").val() +'&sortrule=' +
-            $("#sort_rule").val() + '&range='+ $("#range").val(), function(result) {
+        $.get('/search?keywords1=' + $("#keywords1").val()+
+            '&condition=' + $("#condition").val() +
+            '&keywords2=' + $("#keywords2").val() +
+            '&sortkw=' + $("#sort_kw").val() +
+            '&sortrule=' + $("#sort_rule").val() +
+            '&range='+ $("#range").val(),   function(result) {
             // 未找到
             if (result.length === 0) {
                 alert("未找到！");
