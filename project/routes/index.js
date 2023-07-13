@@ -150,8 +150,15 @@ router.get('/heatMap', function(req, res) {
 
 
 router.get('/wordCloud', function(req, res) {
-    var kw = req.query.keywords;
-    var fetchSql = "SELECT keywords FROM fetches";
+    var starttime = req.query.startTime;
+    var endtime = req.query.endTime;
+    // select keywords from fetches where publish_date between "2023-07-06" and "2023-07-08";
+    var fetchSql = `
+        SELECT keywords 
+        FROM fetches
+        WHERE publish_date
+        BETWEEN '${starttime}' AND '${endtime}'
+    `;
     // console.log(fetchSql);
     mysql.query_noparam(fetchSql, function (err, result, fields) {
         if (err) {

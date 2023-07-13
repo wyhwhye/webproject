@@ -32,9 +32,47 @@
 			<p class="subtitle">词云</p>
 			<form id="worldCloudForm">
 				<!-- 搜索内容 -->
-				<div class="wc_kw">时间：<input type="text" id="wc_keywords"></div>
+				<div class="wc_kw">
+					时间跨度：
+					<select id="wc_startTime">
+						<option>2023-07-05</option>
+						<option>2023-07-06</option>
+						<option>2023-07-07</option>
+						<option>2023-07-08</option>
+						<option>2023-07-09</option>
+						<option>2023-07-10</option>
+						<option>2023-07-11</option>
+						<option>2023-07-12</option>
+						<option>2023-07-13</option>
+						<option>2023-07-14</option>
+						<option>2023-07-15</option>
+						<option>2023-07-16</option>
+						<option>2023-07-17</option>
+						<option>2023-07-18</option>
+						<option>2023-07-19</option>
+					</select>
+					-
+					<select id="wc_endTime">
+						<option>2023-07-05</option>
+						<option>2023-07-06</option>
+						<option>2023-07-07</option>
+						<option>2023-07-08</option>
+						<option>2023-07-09</option>
+						<option>2023-07-10</option>
+						<option>2023-07-11</option>
+						<option>2023-07-12</option>
+						<option>2023-07-13</option>
+						<option>2023-07-14</option>
+						<option>2023-07-15</option>
+						<option>2023-07-16</option>
+						<option>2023-07-17</option>
+						<option>2023-07-18</option>
+						<option>2023-07-19</option>
+					</select>
+				</div>
+
 				<!-- 提交按钮 -->
-				<input type="button" value="确定" id="wc_searchButton">
+				<input type="button" value="查询" id="wc_searchButton">
 			</form>
 		</div>
 		<div id="body_wordCloudResult"></div>
