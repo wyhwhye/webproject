@@ -14,7 +14,7 @@ $(document).ready(function() {
                 return;
             }
             div.style.width = '600px';
-            div.style.height = '400px';
+            div.style.height = '420px';
             // console.log(data)
             var xy = {};
             data.forEach(item => {

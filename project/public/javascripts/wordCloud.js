@@ -64,7 +64,7 @@ $(document).ready(function() {
 function drawWordCloud(data){
     var div = document.getElementById('body_wordCloudResult');
     div.style.width = '600px';
-    div.style.height = '300px';
+    div.style.height = '440px';
     var myChart = echarts.init(div);
     // 指定图表的配置项和数据
     option = {
@@ -76,9 +76,9 @@ function drawWordCloud(data){
                 type: 'wordCloud',  // 词云图
                 gridSize: 6,  //词的间距
                 shape: 'circle',  // 词云形状，可选diamond，pentagon，circle，triangle，star等形状
-                sizeRange: [12, 45],  // 词云大小范围
+                sizeRange: [15, 60],  // 词云大小范围
                 width: 600,  // 词云显示宽度
-                height: 300,  // 词云显示高度
+                height: 400,  // 词云显示高度
                 textStyle: {
                     color: function () {
                         // 词云的颜色随机，255太亮，180暗一点
