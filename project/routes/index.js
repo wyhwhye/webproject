@@ -143,11 +143,26 @@ router.get('/heatMap', function(req, res) {
         });
         // console.log(JSON.stringify(result));
         res.writeHead(200, { "Content-Type": "application/json" });
-        // res.write(JSON.stringify({message:'data',result:myfreqchangeModule.freqchange(result, kw)}
         res.write(JSON.stringify(result));
         res.end();
     });
+});
 
+
+router.get('/wordCloud', function(req, res) {
+    var kw = req.query.keywords;
+    var fetchSql = "SELECT keywords FROM fetches";
+    // console.log(fetchSql);
+    mysql.query_noparam(fetchSql, function (err, result, fields) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        // console.log(JSON.stringify(result));
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.write(JSON.stringify(result));
+        res.end();
+    });
 });
 
 module.exports = router;

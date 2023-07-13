@@ -2,22 +2,16 @@
     margin: 0;
     padding: 0;
 }
-/*body{*/
-/*    background-image: url("../images/bg.png");*/
-/*    background-repeat: no-repeat;*/
-/*    background-size: cover;*/
-/*    !*background-position: center top;*!*/
-/*    !*background-attachment: fixed;*!*/
-/*}*/
+
 #starsCanvas{
     position:fixed;  //设置定位
     top:0;
     left:0;
     z-index:-1;  //使画布基于最低层
-    background:#0e1729;  //画布背景色
+    /*background:#0e1729;  //画布背景色*/
 }
 .top{
-    position: relative;
+    position: relative;  //定位，与body、foot分层
     z-index: 1;
     width: 100%;
     height: 50px;
@@ -39,7 +33,7 @@
     background-color: #fff6f6;
     opacity: 0.95;
     /*background-color: #e5cfcf;*/
-    /*text-align: center;*/
+    text-align: center;
     border-radius: 4px;
 }
 .foot{
@@ -73,7 +67,7 @@
     font-size: 20px;
 }
 .navigator li{
-    display: inline;  /* 一行内展示 */
+    display: inline;  // 一行内展示
     padding-left: 30px;
     padding-right: 30px;
     font-weight: bold;
@@ -122,7 +116,7 @@
     /*background-color: #79c448;*/
     text-align: center;
 }
-#searchForm{
+#searchForm, #heatMapForm, #worldCloudForm{
     display: inline-block;
 }
 .body_searchResult{
@@ -137,7 +131,7 @@
     /*background-color: aqua;*/
 }
 
-.kw{
+.s_kw, .hm_kw, .wc_kw{
     width: 100%;
     font-size: 15px;
     padding: 3px;
@@ -160,7 +154,7 @@
     text-align: left;
 }
 
-#keywords, #keywords1, #keywords2{
+#s_keywords, #s_keywords2, #hm_keywords, #wc_keywords{
     padding: 3px;
 }
 #condition{
@@ -173,21 +167,20 @@
     padding: 3px;
     text-align: center;
 }
-#searchButton{
+
+#searchButton,#hm_searchButton, #wc_searchButton{
     /*margin-bottom: 10px;*/
     padding: 5px 10px;
-    float: left;
 }
-#searchButton2{
-    /*margin-bottom: 10px;*/
-    padding: 5px 10px;
+#searchButton{
+    float: left;
 }
 
 
 /*分项全文搜索结果*/
 #resTable{
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse;  // 边框合并
     margin-top: 10px;
 }
 
@@ -259,8 +252,17 @@
     /*background-color: cyan;*/
 }
 #body_heatMapResult{
-    /*width: 600px;*/
-    /*height: 400px;*/
     margin: 20px auto;
     /*background-color: linen;*/
+}
+
+/* 词云 */
+.body_wordCloud{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    /*background-color: cyan;*/
+}
+#body_wordCloudResult{
+    margin: 20px auto;
 }

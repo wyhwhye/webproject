@@ -242,9 +242,9 @@ function goToNextPage() {
 $(document).ready(function() {
     $("input:button").click(function() {
         currentPage = 1;
-        $.get('/search?keywords1=' + $("#keywords1").val()+
+        $.get('/search?keywords1=' + $("#s_keywords").val()+
             '&condition=' + $("#condition").val() +
-            '&keywords2=' + $("#keywords2").val() +
+            '&keywords2=' + $("#s_keywords2").val() +
             '&sortkw=' + $("#sort_kw").val() +
             '&sortrule=' + $("#sort_rule").val() +
             '&range='+ $("#range").val(),   function(result) {

@@ -18,9 +18,9 @@
 			<!--导航栏-->
 			<ul class="navigator">
 				<li class="nav">导航栏</li>
-				<li><a href="homePage.html">首页</a></li>
 				<li><a href="search.html">分项全文搜索</a></li>
 				<li><a href="heatMap.html">时间热度图</a></li>
+				<li><a href="wordCloud.html">词云</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -28,12 +28,11 @@
 	<div class="body">
 		<div class="body_heatMap">
 			<p class="subtitle">时间热度图</p>
-			<form id="worldCloudForm">
+			<form id="heatMapForm">
 				<!-- 搜索内容 -->
-				<div class="kw2">关键词：<input type="text" id="keywords"></div>
-				<br/>
+				<div class="hm_kw">关键词：<input type="text" id="hm_keywords"></div>
 				<!-- 提交按钮 -->
-				<input type="button" value="确定" id="searchButton2">
+				<input type="button" value="确定" id="hm_searchButton">
 			</form>
 		</div>
 		<div id="body_heatMapResult"></div>

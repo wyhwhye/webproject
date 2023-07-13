@@ -40,7 +40,7 @@ request(seedURL, function (err, res, body) {
 
     var seedurl_news = "";
     try {
-        seedurl_news = $('a');
+        seedurl_news = $('a');  // 找a链接
     } catch (e) { console.log('url列表所处的html块识别出错：' + e) }
 
     seedurl_news.each(function(i, e) {  // 遍历种子页面里所有的a链接

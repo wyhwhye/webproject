@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
     $("input:button").click(function() {
-        var h_kw = $("#keywords").val();
+        var h_kw = $("#hm_keywords").val();
         if (h_kw === ''){
             alert("请输入关键词！");
             return;

@@ -1,74 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Html+js 实现星空背景</title>
-	<style>
-        #starsCanvas{
-            position:fixed;/*设置定位*/
-            top:0;
-            left:0;
-            z-index:-1;/*使画布基于最低层*/
-            background:#0e1729;/*画布背景色*/
-        }
-	</style>
+	<title>词云图</title>
+	<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+	<script src="./javascripts/echarts-wordcloud.js"></script>
 </head>
+
 <body>
-	<!-- canvas画布 -->
-	<canvas id="starsCanvas"></canvas>
-	<script>
-        var canvas;
-        var stars_count;
-        var stars;
-        ini();
-        makeStars();
-        var interval=setInterval(function(){drawStars();},50);//定时刷新星星数据
-
-        function ini(){//初始化
-            canvas = document.getElementById("starsCanvas");
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            context = canvas.getContext("2d");
-            stars = Array();//数组存放随机生成的星星数据（x,y,大小，颜色，速度）
-            stars_count = 300;//星星数量
-            clearInterval(interval);
-        }
-
-        function makeStars(){//随机生成星星数据
-            for(var i=0;i<stars_count;i++)
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 1000px;height:600px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    // 指定图表的配置项和数据
+    option = {
+        tooltip: {
+            show: true
+        },
+        series: [
             {
-                let x=Math.random() * canvas.offsetWidth;
-                let y = Math.random() * canvas.offsetHeight;
-                let radius = Math.random()*0.8;
-                let color="rgba("+Math.random()*255+","+Math.random()*255+","+Math.random()*255+",0.8)";
-                let speed=Math.random()*0.5;
-                let arr={'x':x,'y':y,'radius':radius,'color':color,'speed':speed};//（x,y,大小，颜色，速度）
-                stars.push(arr);//随机生成的星星数据存在这里
+                type: 'wordCloud', //词云图
+                gridSize: 6, //词的间距
+                shape: 'circle', //词云形状，可选diamond，pentagon，circle，triangle，star等形状
+                sizeRange: [12, 45], //词云大小范围
+                width: 900, //词云显示宽度
+                height: 500, //词云显示高度
+                textStyle: {
+                    normal: {
+                        color: function () {
+                            //词云的颜色随机
+                            return (
+                                'rgb(' +
+                                [
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160)
+                                ].join(',') +
+                                ')'
+                            );
+                        }
+                    },
+                    emphasis: {
+                        shadowBlur: 10, //阴影的模糊等级
+                        shadowColor: '#333' //鼠标悬停在词云上的阴影颜色
+                    }
+                },
+                data: [
+                    {
+                        name: ' 没有',
+                        value: 30
+                    },
+                    {
+                        name: ' 屏幕',
+                        value: 24
+                    },
+                    {
+                        name: ' 不错',
+                        value: 21
+                    },
+                    {
+                        name: ' 可以',
+                        value: 19
+                    },
+                    {
+                        name: ' 发货',
+                        value: 18
+                    },
+                    {
+                        name: ' 这个',
+                        value: 18
+                    },
+                    {
+                        name: ' 什么',
+                        value: 17
+                    },
+                    {
+                        name: ' 一个',
+                        value: 12
+                    },
+                    {
+                        name: ' 不好',
+                        value: 12
+                    },
+                    {
+                        name: ' 质量',
+                        value: 11
+                    },
+                    {
+                        name: ' 快递',
+                        value: 11
+                    },
+                    {
+                        name: ' 问题',
+                        value: 10
+                    },
+                    {
+                        name: ' 物流',
+                        value: 9
+                    },
+                    {
+                        name: ' 几天',
+                        value: 9
+                    },
+                    {
+                        name: ' 一般',
+                        value: 9
+                    },
+                    {
+                        name: ' 就是',
+                        value: 9
+                    },
+                    {
+                        name: ' 使用',
+                        value: 8
+                    },
+                    {
+                        name: ' 怎么',
+                        value: 8
+                    },
+                    {
+                        name: ' 电池',
+                        value: 8
+                    },
+                    {
+                        name: ' 不能',
+                        value: 8
+                    },
+                    {
+                        name: ' 速度',
+                        value: 8
+                    },
+                    {
+                        name: ' 客服',
+                        value: 8
+                    },
+                    {
+                        name: ' 一星',
+                        value: 8
+                    },
+                    {
+                        name: ' 拍照',
+                        value: 8
+                    },
+                    {
+                        name: ' 摄像头',
+                        value: 7
+                    }
+                ]
             }
-        }
+        ]
+    };
 
-        function drawStars(){//把星星画到画布上
-            context.fillStyle = "#0e1729";
-            context.fillRect(0,0,canvas.width,canvas.height);
-            for (var i = 0; i < stars.length; i++) {
-                var x = stars[i]['x'] - stars[i]['speed'];
-                if(x<-2*stars[i]['radius']) x=canvas.width;
-                stars[i]['x']=x;
-                var y = stars[i]['y'];
-                var radius = stars[i]['radius'];
-                context.beginPath();
-                context.arc(x, y, radius*2, 0, 2*Math.PI);
-                context.fillStyle = "rgba("+Math.random()*255+","+Math.random()*255+","+Math.random()*255+",0.8)";
-                context.fill();
-            }
-        }
-
-        window.onresize = function(){//窗口大小发生变化时重新随机生成星星数据
-            ini();
-            makeStars();
-            interval=setInterval(function(){drawStars();},50);
-        }
-	</script>
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option, true);
+</script>
 </body>
 </html>

@@ -7,6 +7,7 @@
 	<link type="text/css" rel="stylesheet" href="stylesheets/style.css">
 	<script src="https://cdn.staticfile.org/jquery/3.7.0/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+	<script src="./javascripts/echarts-wordcloud.js"></script>
 </head>
 
 <body>
@@ -19,18 +20,28 @@
 			<!--导航栏-->
 			<ul class="navigator">
 				<li class="nav">导航栏</li>
-				<li><a href="homePage.html">首页</a></li>
 				<li><a href="search.html">分项全文搜索</a></li>
 				<li><a href="heatMap.html">时间热度图</a></li>
+				<li><a href="wordCloud.html">词云</a></li>
 			</ul>
 		</nav>
 	</div>
 
 	<div class="body">
-		<div class="body_wc">
-			<p class="subtitle">WEB</p>
+		<div class="body_wordCloud">
+			<p class="subtitle">词云</p>
+			<form id="worldCloudForm">
+				<!-- 搜索内容 -->
+				<div class="wc_kw">时间：<input type="text" id="wc_keywords"></div>
+				<!-- 提交按钮 -->
+				<input type="button" value="确定" id="wc_searchButton">
+			</form>
 		</div>
+		<div id="body_wordCloudResult"></div>
+
+		<script src="./javascripts/wordCloud.js"></script>
 	</div>
+
 
 	<div class="foot">
 		<div class="foot_content">
