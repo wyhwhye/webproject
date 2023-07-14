@@ -64,7 +64,7 @@ request(seedURL, function (err, res, body) {
         mysql.query(fetch_url_Sql, fetch_url_Sql_Params, function(qerr, vals, fields) {
             if (vals.length > 0) {
                 console.log('URL duplicate!')
-            } else newsGet(myURL); //读取新闻页面
+            } else newsGet(myURL);  // 读取新闻页面
         });
 
     });
@@ -77,22 +77,22 @@ function newsGet(myURL) {  // 读取新闻页面
             if (/工作室《谈心社》栏目/.test(html_news)) return;  // 去掉奇怪的网页
             // console.log(html_news);
             // 准备用cheerio解析html_news
-            var $ = myCheerio.load(html_news, { decodeEntities: true });
+            var $ = myCheerio.load(html_news, { decodeEntities: true });  // 解析子网站
         } catch (e) {  console.log('读新闻页面并转码出错:' + e + " " + myURL); return;}
         console.log("转码读取成功:" + myURL);
 
         // 动态执行format字符串，构建json对象准备写入文件或数据库
         var fetch = {};
-        fetch.title = "";
-        fetch.source = "";
-        fetch.publish_date ="";
-        fetch.keywords = "";
-        fetch.author = "";
-        fetch.url = myURL;
-        fetch.source_name = source_name;
-        fetch.source_encoding = myEncoding;  // 编码
-        fetch.crawltime = new Date();
-        fetch.content = "";
+        fetch.title = "";                       // 标题
+        fetch.source = "";                      // 来源
+        fetch.publish_date ="";                 // 发布日期
+        fetch.keywords = "";                    // 关键词
+        fetch.author = "";                      // 作者
+        fetch.url = myURL;                      // 网址
+        fetch.source_name = source_name;        // 新闻网站，如网易、新浪
+        fetch.source_encoding = myEncoding;     // 编码
+        fetch.crawltime = new Date();           // 爬取时间
+        fetch.content = "";                     // 内容
         try{
             // 标题
             fetch.title = $('.post_title').text();

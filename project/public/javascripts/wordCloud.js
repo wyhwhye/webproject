@@ -14,7 +14,7 @@ $(document).ready(function() {
             }
             // console.log(data)
 
-            // 处理数据
+            // 处理数据，获得每个关键词
             var words = [];
             data.forEach(item => {
                 let tmp = item.keywords.split(',');

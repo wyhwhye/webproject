@@ -56,7 +56,8 @@ function showResults() {
             li.appendChild(a);
             paginationContainer.appendChild(li);
         }
-    } else if (totalPages > 7){
+    }
+    else if (totalPages > 7){
         console.log(currentPage);
         switch (currentPage){
             case 1:  // < 1 2 3 4 5 ... c >
@@ -153,7 +154,6 @@ function showResults() {
                 break;
 
             default:  // < 1 ... x-1 x x+1 ... c >
-                console.log("进default");
                 // 首页
                 var li = document.createElement('li');
                 var a = document.createElement('a');
@@ -218,7 +218,6 @@ function showResults() {
                 };
                 li.appendChild(a);
                 paginationContainer.appendChild(li);
-
         }
     }
 }
