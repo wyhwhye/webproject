@@ -95,8 +95,9 @@ body {
 }
 .subtitle{
     text-align: center;
-    font-size: 22px;
+    font-size: 32px;
     padding: 22px;
+    font-family: 华文中宋;
 }
 #copyright{
     width: 100%;
