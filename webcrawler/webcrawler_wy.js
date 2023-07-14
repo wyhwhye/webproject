@@ -105,7 +105,7 @@ function newsGet(myURL) {  // 读取新闻页面
             // 关键词
             fetch.keywords = $('meta[name="keywords"]').eq(0).attr("content");
             // 作者
-            fetch.author = $('.post_author').text().match(/责任编辑：\n(.*)_/)[1].split(/[\t\r\f\n\s]*/g).join("");
+            fetch.author = $('.post_author').text().match(/责任编辑：\n(.*)_/)[1].split(/[\t\r\f\n\s]*/g).join("");  // 去掉空格
             // 内容
             fetch.content = $('.post_body p').text().split(/[\t\r\f\n\s]*/g).join("");
         } catch (e) {  console.log('获取内容出错:' + e + " " + myURL); return;}
