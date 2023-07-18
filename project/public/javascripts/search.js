@@ -10,17 +10,21 @@ function showResults() {
     var paginationContainer = document.getElementById('pagination');
     var totalPages = Math.ceil(data.length / resultsPerPage);
 
+    // 清空分页
     resultBody.innerHTML = '';
+    paginationContainer.innerHTML = '';
+    // 显示内容
     resultContainer.style.display = "block";
-    paginationContainer.innerHTML = ''; // 清空分页索引容器
 
+    // 每页显示的页码范围
     var startIndex = (currentPage - 1) * resultsPerPage;
     var endIndex = startIndex + resultsPerPage;
 
+    /* 将条目加入表格中 */
     for (let i = startIndex; i < endIndex && i < data.length; i++) {
         var news = data[i];
         var row = document.createElement('tr');
-        if ((i+1)%2 === 0){
+        if ((i+1)%2 === 0){  // 设置间隔背景颜色
             row.className = 'ss';
         }
         row.innerHTML = `
@@ -34,12 +38,19 @@ function showResults() {
         resultBody.appendChild(row);
     }
 
-    prevButton.disabled = currentPage === 1;
-    nextButton.disabled = currentPage === totalPages;
+    // if (currentPage === 1) {
+    //     prevButton.disabled = true;
+    // }
+    // if (currentPage === totalPages) {
+    //     nextButton.disabled = true;
+    // }
+    prevButton.disabled = currentPage === 1;  // 第一页，关闭prevButton
+    nextButton.disabled = currentPage === totalPages;  // 最后一页，关闭nextButton
 
 
-    /* 添加分页索引按钮 */
-    if (totalPages <= 7){
+    /* 添加分页按钮 */
+    if (totalPages <= 7){  // 如果 totalPages <= 7页，全部显示
+        // 创建  <li><a></a></li> 标签作为按钮
         for (let i = 1; i <= totalPages; i++) {
             var li = document.createElement('li');
             var a = document.createElement('a');
@@ -49,16 +60,17 @@ function showResults() {
                 currentPage = i;
                 showResults();
             };
-            if (currentPage === i) {
-                a.style.color = "black"; // 设置当前页按钮的颜色
+            if (currentPage === i) {  // 更改当前所在页的格式
+                a.style.color = "black";
                 a.classList.add('show-after');
             }
             li.appendChild(a);
             paginationContainer.appendChild(li);
         }
     }
-    else if (totalPages > 7){
-        console.log(currentPage);
+    else if (totalPages > 7){  // 如果 totalPages > 7页，部分显示
+        // console.log(currentPage);
+        /* 根据当前页决定分页显示格式，“...”相应为中间页 */
         switch (currentPage){
             case 1:  // < 1 2 3 4 5 ... c >
             case 2:  // < 1 2 3 4 5 ... c >
@@ -74,7 +86,7 @@ function showResults() {
                         showResults();
                     };
                     if (currentPage === i) {
-                        a.style.color = "black"; // 设置当前页按钮的颜色
+                        a.style.color = "black";
                         a.classList.add('show-after');
                     }
                     li.appendChild(a);
@@ -145,7 +157,7 @@ function showResults() {
                         showResults();
                     };
                     if (currentPage === i) {
-                        a.style.color = "black"; // 设置当前页按钮的颜色
+                        a.style.color = "black";
                         a.classList.add('show-after');
                     }
                     li.appendChild(a);
@@ -153,7 +165,8 @@ function showResults() {
                 }
                 break;
 
-            default:  // < 1 ... x-1 x x+1 ... c >
+            // < 1 ... x-1 x x+1 ... c >
+            default:
                 // 首页
                 var li = document.createElement('li');
                 var a = document.createElement('a');
@@ -188,7 +201,7 @@ function showResults() {
                         showResults();
                     };
                     if (currentPage === i) {
-                        a.style.color = "black"; // 设置当前页按钮的颜色
+                        a.style.color = "black";
                         a.classList.add('show-after');
                     }
                     li.appendChild(a);
@@ -218,6 +231,7 @@ function showResults() {
                 };
                 li.appendChild(a);
                 paginationContainer.appendChild(li);
+
         }
     }
 }
