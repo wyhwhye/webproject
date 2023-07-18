@@ -13,9 +13,13 @@ $(document).ready(function() {
                 alert("未找到！");
                 return;
             }
+            // console.log(data)
+
+            // 更改画布大小
             div.style.width = '600px';
             div.style.height = '420px';
-            // console.log(data)
+
+            // 处理数据格式
             var xy = {};
             data.forEach(item => {
                 if (item.publish_date in xy){
@@ -29,17 +33,17 @@ $(document).ready(function() {
             // 作图
             var myChart = echarts.init(div);
             option = {
-                title: {
+                title: {  // 标题
                     text:'"' + h_kw + '"'+ '在新闻中的出现次数随时间变化图'
                 },
-                xAxis: {
+                xAxis: {  // x轴
                     type: 'category',
                     data: Object.keys(xy)
                 },
-                yAxis: {
+                yAxis: {  // y轴
                     type: 'value'
                 },
-                series: [{
+                series: [{  // 数据、类型
                     data: Object.values(xy),
                     type: 'line',
                     itemStyle: {normal: {label: {show: true}}}

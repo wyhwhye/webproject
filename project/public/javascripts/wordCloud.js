@@ -74,7 +74,7 @@ function drawWordCloud(data){
         series: [
             {
                 type: 'wordCloud',  // 词云图
-                gridSize: 6,  //词的间距
+                gridSize: 6,  // 词的间距
                 shape: 'circle',  // 词云形状，可选diamond，pentagon，circle，triangle，star等形状
                 sizeRange: [15, 60],  // 词云大小范围
                 width: 600,  // 词云显示宽度
