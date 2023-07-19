@@ -64,7 +64,6 @@ function showResults() {
                 addDotsPageButton(Math.ceil((5+totalPages)/2));
                 addLastPageButton();
                 break;
-
             case totalPages-3:  // < 1 ... c-4 c-3 c-1 c-1 c >
             case totalPages-2:  // < 1 ... c-4 c-3 c-1 c-1 c >
             case totalPages-1:  // < 1 ... c-4 c-3 c-1 c-1 c >
@@ -73,7 +72,6 @@ function showResults() {
                 addDotsPageButton(Math.ceil((1 + totalPages-4)/2));
                 addSuccessivePageButton(totalPages-4, totalPages);
                 break;
-
             // < 1 ... x-1 x x+1 ... c >
             default:
                 addFirstPageButton();
