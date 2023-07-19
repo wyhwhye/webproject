@@ -11,9 +11,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/search', function(req, res) {
     var kw1 = req.query.keywords1;
+    var range1 = req.query.range1;
     var cd = req.query.condition;
     var kw2 = req.query.keywords2;
-    var range = req.query.range;
+    var range2 = req.query.range2;
     var sortkw = req.query.sortkw;
     var sortrule;
     if (req.query.sortrule==="升序"){
@@ -23,11 +24,9 @@ router.get('/search', function(req, res) {
     }
 
     //sql字符串和参数
-    if (range === "全部"){
-        switch (cd){
-            case "-":
-                // var fetchSql = "select title,author,source_name,url,publish_date from fetches where title like '%"+ kw1 +"%'" +
-                //     " or content like '%"+ kw1 +"%'" + " or author like '%"+ kw1 +"%'" + ' order by '+sortkw+' '+sortrule;
+    switch (cd){
+        case "-":
+            if (range1 === "全部"){
                 var fetchSql = `
                     SELECT title, author, source_name, url, publish_date 
                     FROM fetches 
@@ -36,27 +35,63 @@ router.get('/search', function(req, res) {
                     OR author LIKE '%${kw1}%'
                     ORDER BY ${sortkw} ${sortrule}
                 `;
-                break;
-            case "AND":
-                // var fetchSql = "select title,author,source_name,url,publish_date from fetches where (title like '%"+ kw1 +"%'" +
-                //     " or content like '%"+ kw1 +"%'" + " or author like '%"+ kw1 +"%')" + " and " +
-                //     "(title like '%"+ kw2 +"%'" + " or content like '%"+ kw2 +"%'" + " or author like '%"+ kw2 +"%')"  + ' order by '+sortkw+' '+sortrule;
+            } else {
+                var fetchSql = `
+                    SELECT title, author, source_name, url, publish_date 
+                    FROM fetches 
+                    WHERE ${range1} LIKE '%${kw1}%'
+                    ORDER BY ${sortkw} ${sortrule}
+                `;
+            }
+            break;
+        case "AND":
+            if (range1 === "全部" && range2 === "全部"){
+                var fetchSql = `
+                    SELECT title, author, source_name, url, publish_date 
+                    FROM fetches 
+                    WHERE (title LIKE '%${kw1}%'
+                        OR content LIKE '%${kw1}%'   
+                        OR author LIKE '%${kw1}%')
+                    AND (title LIKE '%${kw2}%'
+                        OR content LIKE '%${kw2}%'   
+                        OR author LIKE '%${kw2}%')
+                    ORDER BY ${sortkw} ${sortrule}
+                `;
+            }
+            else if (range1 !== "全部" && range2 === "全部"){
+                var fetchSql = `
+                    SELECT title, author, source_name, url, publish_date 
+                    FROM fetches 
+                    WHERE (${range1} LIKE '%${kw1}%')
+                    AND (title LIKE '%${kw2}%'
+                    OR content LIKE '%${kw2}%'   
+                    OR author LIKE '%${kw2}%')
+                    ORDER BY ${sortkw} ${sortrule}
+                `;
+            }
+            else if (range1 === "全部" && range2 !== "全部"){
                 var fetchSql = `
                     SELECT title, author, source_name, url, publish_date 
                     FROM fetches 
                     WHERE (title LIKE '%${kw1}%'
                     OR content LIKE '%${kw1}%'   
                     OR author LIKE '%${kw1}%')
-                    AND (title LIKE '%${kw2}%'
-                    OR content LIKE '%${kw2}%'   
-                    OR author LIKE '%${kw2}%')
+                    AND (${range2} LIKE '%${kw2}%')
                     ORDER BY ${sortkw} ${sortrule}
                 `;
-                break;
-            case "OR":
-                // var fetchSql = "select title,author,source_name,url,publish_date from fetches where title like '%"+ kw1 +"%'" +
-                //     " or title like '%"+ kw2 +"%'" + " or content like '%"+ kw1 +"%'" + " or content like '%"+ kw2 +"%'" +
-                //     " or author like '%"+ kw1 +"%'" + " or author like '%"+ kw2 +"%'"  + ' order by '+sortkw+' '+sortrule;
+            }
+            else if (range1 !== "全部" && range2 !== "全部"){
+                var fetchSql = `
+                    SELECT title, author, source_name, url, publish_date 
+                    FROM fetches 
+                    WHERE ${range1} LIKE '%${kw1}%'
+                    AND ${range2} LIKE '%${kw2}%'
+                    ORDER BY ${sortkw} ${sortrule}
+                `;
+            }
+            break
+        case "OR":
+            if (range1 === "全部" && range2 === "全部"){
                 var fetchSql = `
                     SELECT title, author, source_name, url, publish_date 
                     FROM fetches 
@@ -68,46 +103,42 @@ router.get('/search', function(req, res) {
                     OR author LIKE '%${kw2}%'
                     ORDER BY ${sortkw} ${sortrule}
                 `;
-                break;
-        }
-
-    } else {
-        switch (cd){
-            case "-":
-                // var fetchSql = "select title,author,source_name,url,publish_date from fetches where "+ range +" like '%"+ kw1 +"%'" + ' order by '+sortkw+' '+sortrule;
+            }
+            else if (range1 !== "全部" && range2 === "全部"){
                 var fetchSql = `
                     SELECT title, author, source_name, url, publish_date 
                     FROM fetches 
-                    WHERE ${range} LIKE '%${kw1}%'
+                    WHERE (${range1} LIKE '%${kw1}%')
+                    OR (title LIKE '%${kw2}%'
+                    OR content LIKE '%${kw2}%'   
+                    OR author LIKE '%${kw2}%')
                     ORDER BY ${sortkw} ${sortrule}
                 `;
-                break;
-            case "AND":
-                // var fetchSql = "select title,author,source_name,url,publish_date from fetches where "+
-                //     range +" like '%"+ kw1 +"%'" + " and " + range +" like '%"+ kw2 +"%'" + ' order by '+sortkw+' '+sortrule;
+            }
+            else if (range1 === "全部" && range2 !== "全部"){
                 var fetchSql = `
                     SELECT title, author, source_name, url, publish_date 
                     FROM fetches 
-                    WHERE ${range} LIKE '%${kw1}%'
-                    AND ${range} LIKE '%${kw2}%'
+                    WHERE (title LIKE '%${kw1}%'
+                    OR content LIKE '%${kw1}%'   
+                    OR author LIKE '%${kw1}%')
+                    OR (${range2} LIKE '%${kw2}%')
                     ORDER BY ${sortkw} ${sortrule}
                 `;
-                break;
-            case "OR":
-                // var fetchSql = "select title,source_name,url,publish_date from fetches where "+
-                //     range +" like '%"+ kw1 +"%'" + " or " + range +" like '%"+ kw2 +"%'" + ' order by '+sortkw+' '+sortrule;
+            }
+            else if (range1 !== "全部" && range2 !== "全部"){
                 var fetchSql = `
                     SELECT title, author, source_name, url, publish_date 
                     FROM fetches 
-                    WHERE ${range} LIKE '%${kw1}%'
-                    OR ${range} LIKE '%${kw2}%'
+                    WHERE ${range1} LIKE '%${kw1}%'
+                    OR ${range2} LIKE '%${kw2}%'
                     ORDER BY ${sortkw} ${sortrule}
                 `;
-                break;
-        }
-
+            }
+            break
     }
-    // console.log(fetchSql);
+
+    console.log(fetchSql);
     mysql.query(fetchSql, function(err, result, fields) {
         if (err) {
             console.log(err);

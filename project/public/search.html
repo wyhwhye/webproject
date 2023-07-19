@@ -34,12 +34,29 @@
 				<!-- 搜索内容 -->
 				<div class="s_kw">
 					关键词：
+					<!--范围-->
+					<select name="range" id="range1">
+						<option>全部</option>
+						<option>title</option>
+						<option>author</option>
+						<option>content</option>
+					</select>
+					<!--关键词-->
 					<input type="text" id="s_keywords">
+					<!--布尔-->
 					<select name="condition" id="condition">
 						<option>-</option>
 						<option>AND</option>
 						<option>OR</option>
 					</select>
+					<!--范围-->
+					<select name="range" id="range2">
+						<option>全部</option>
+						<option>title</option>
+						<option>author</option>
+						<option>content</option>
+					</select>
+					<!--关键词-->
 					<input type="text" id="s_keywords2">
 				</div>
 
@@ -58,15 +75,7 @@
 					</select>
 				</div>
 
-				<!-- 搜索范围-->
-				<div class="rg" id="rg">
-					搜索范围：<select name="range" id="range">
-								<option>全部</option>
-								<option>title</option>
-								<option>author</option>
-								<option>content</option>
-							</select>
-				</div>
+
 				<!-- 提交按钮 -->
 				<input type="button" value="搜索" id="searchButton">
 			</form>

@@ -166,11 +166,12 @@ $(document).ready(function() {
     $("input:button").click(function() {
         currentPage = 1;
         $.get('/search?keywords1=' + $("#s_keywords").val()+
+            '&range1='+ $("#range1").val() +
             '&condition=' + $("#condition").val() +
             '&keywords2=' + $("#s_keywords2").val() +
+            '&range2='+ $("#range2").val() +
             '&sortkw=' + $("#sort_kw").val() +
-            '&sortrule=' + $("#sort_rule").val() +
-            '&range='+ $("#range").val(),   function(result) {
+            '&sortrule=' + $("#sort_rule").val() , function(result) {
             // 未找到
             if (result.length === 0) {
                 alert("未找到！");
