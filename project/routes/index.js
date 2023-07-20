@@ -139,7 +139,7 @@ router.get('/search', function(req, res) {
             break
     }
 
-    console.log(fetchSql);
+    // console.log(fetchSql);
     mysql.query(fetchSql, function(err, result, fields) {
         if (err) {
             console.log(err);
