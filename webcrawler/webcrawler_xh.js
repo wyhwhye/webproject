@@ -1,9 +1,10 @@
-var fs = require('fs');                // 写入文件
-var myRequest = require('request');    // 发起请求
-var myCheerio = require('cheerio');    // 解码网页
-var myIconv = require('iconv-lite');   // 转换编码
-require('date-utils');                 // 处理日期
-const mysql = require("./mysql");      // 数据库
+var fs = require('fs');                     // 写入文件
+var myRequest = require('request');         // 发起请求
+var myCheerio = require('cheerio');         // 解码网页
+var myIconv = require('iconv-lite');        // 转换编码
+require('date-utils');                      // 处理日期
+const mysql = require("./mysql");           // 数据库
+var schedule = require('node-schedule');    // 定时执行
 
 
 var source_name = "新华网";
@@ -29,45 +30,62 @@ function request(url, callback) {
     }
     myRequest(options, callback)
 }
-request(seedURL, function (err, res, body) {
-    try {
-        // 用iconv转换编码
-        var html = myIconv.decode(body, myEncoding);
-        // console.log(html);
-        // 准备用cheerio解析html
-        var $ = myCheerio.load(html, { decodeEntities: true });
-    } catch (e) { console.log('读种子页面并转码出错：' + e) }
 
-    var seedurl_news = "";
-    try {
-        seedurl_news = $('a');
-    } catch (e) { console.log('url列表所处的html块识别出错：' + e) }
 
-    seedurl_news.each(function(i, e) {  // 遍历种子页面里所有的a链接
-        var myURL = "";
+// 定时执行
+var rule = new schedule.RecurrenceRule();
+var times = [0, 12]; //每天2次自动执行
+var times2 = 5; //定义在第几分钟执行
+rule.hour = times;
+rule.minute = times2;
+
+//定时执行httpGet()函数
+schedule.scheduleJob(rule, function() {
+    seedget();
+});
+
+function seedget(){
+    request(seedURL, function (err, res, body) {
         try {
-            //得到具体新闻url
-            var href = "";
-            href = $(e).attr("href");
-            if (href === undefined) return;
-            // console.log(href);
-            myURL = href;
-        } catch (e) { console.log('识别种子页面中的新闻链接出错：' + e); }
+            // 用iconv转换编码
+            var html = myIconv.decode(body, myEncoding);
+            // console.log(html);
+            // 准备用cheerio解析html
+            var $ = myCheerio.load(html, { decodeEntities: true });
+        } catch (e) { console.log('读种子页面并转码出错：' + e) }
 
-        if (!url_reg.test(myURL)) return;  // 检验是否符合新闻url的正则表达式
-        // console.log(myURL);
-        // newsGet(myURL);  // 读取新闻页面
+        var seedurl_news = "";
+        try {
+            seedurl_news = $('a');
+        } catch (e) { console.log('url列表所处的html块识别出错：' + e) }
+
+        seedurl_news.each(function(i, e) {  // 遍历种子页面里所有的a链接
+            var myURL = "";
+            try {
+                //得到具体新闻url
+                var href = "";
+                href = $(e).attr("href");
+                if (href === undefined) return;
+                // console.log(href);
+                myURL = href;
+            } catch (e) { console.log('识别种子页面中的新闻链接出错：' + e); }
+
+            if (!url_reg.test(myURL)) return;  // 检验是否符合新闻url的正则表达式
+            // console.log(myURL);
+            // newsGet(myURL);  // 读取新闻页面
 
 
-        var fetch_url_Sql = 'select url from fetches where url=?';
-        var fetch_url_Sql_Params = [myURL];
-        mysql.query(fetch_url_Sql, fetch_url_Sql_Params, function(qerr, vals, fields) {
-            if (vals.length > 0) {
-                console.log('URL duplicate!')
-            } else newsGet(myURL); //读取新闻页面
+            var fetch_url_Sql = 'select url from fetches where url=?';
+            var fetch_url_Sql_Params = [myURL];
+            mysql.query(fetch_url_Sql, fetch_url_Sql_Params, function(qerr, vals, fields) {
+                if (vals.length > 0) {
+                    console.log('URL duplicate!')
+                } else newsGet(myURL); //读取新闻页面
+            });
         });
-    });
-})
+    })
+}
+
 
 function newsGet(myURL) {  // 读取新闻页面
     request(myURL, function(err, res, body) {  // 读取新闻页面
