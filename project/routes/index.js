@@ -35,7 +35,8 @@ router.get('/search', function(req, res) {
                     OR author LIKE '%${kw1}%'
                     ORDER BY ${sortkw} ${sortrule}
                 `;
-            } else {
+            }
+            else {
                 var fetchSql = `
                     SELECT title, author, source_name, url, publish_date 
                     FROM fetches 
